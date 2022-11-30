@@ -1,7 +1,7 @@
 package com.example.codeapi.dto;
 
+import com.example.codeapi.dto.PageDto;
 import com.example.codeapi.models.User;
-import org.springframework.data.domain.Pageable;
 
 public class PageUser {
 

@@ -1,4 +1,4 @@
-package com.example.codeapi.serveice;
+package com.example.codeapi.serveice.User;
 
 import com.example.codeapi.Common.Constant;
 import com.example.codeapi.dto.PageUser;

@@ -1,7 +1,5 @@
 package com.example.codeapi.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
 
 @Entity(name = "account")

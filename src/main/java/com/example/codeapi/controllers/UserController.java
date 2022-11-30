@@ -4,9 +4,8 @@ package com.example.codeapi.controllers;
 import com.example.codeapi.dto.PageUser;
 import com.example.codeapi.dto.Request;
 import com.example.codeapi.models.User;
-import com.example.codeapi.serveice.UserService;
+import com.example.codeapi.serveice.User.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,7 +26,7 @@ public class UserController {
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public Request update(@RequestBody  User user)
     {
-            return this.userService.update(user);
+        return this.userService.update(user);
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
