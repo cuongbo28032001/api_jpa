@@ -143,6 +143,16 @@ public class NCCServiceImpl implements NCCService{
     }
 
     @Override
+    public List<DMNCC> getAll() {
+        return nccRepositories.findAll(new Specification<DMNCC>() {
+            @Override
+            public Predicate toPredicate(Root<DMNCC> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
+                return null;
+            }
+        });
+    }
+
+    @Override
     public DMNCC save(DMNCC dmncc) {
         return nccRepositories.save(dmncc);
     }

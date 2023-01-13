@@ -9,9 +9,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+<<<<<<< HEAD
 //@CrossOrigin(origins = "http://localhost:4200/")
+=======
+>>>>>>> a0bfa712d1d97aca4a0ad933126d45a38868600d
 @RestController
 @RequestMapping("/DM_NCC")
+@CrossOrigin(origins="http://localhost:4200")
 public class NCCController {
     @Autowired
     private NCCService nccService;
@@ -34,5 +38,11 @@ public class NCCController {
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
+<<<<<<< HEAD
     public List<DMNCC> getAll() {return  this.nccService.findAll();}
+=======
+    public List<DMNCC> getAll(){
+        return nccService.getAll();
+    };
+>>>>>>> a0bfa712d1d97aca4a0ad933126d45a38868600d
 }

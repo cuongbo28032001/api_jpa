@@ -16,4 +16,6 @@ public interface NCCService {
     Request update(DMNCC dmncc);
 
     Request findByPagingCriteria(PageNCC pageNCC);
+
+    List<DMNCC> getAll();
 }
