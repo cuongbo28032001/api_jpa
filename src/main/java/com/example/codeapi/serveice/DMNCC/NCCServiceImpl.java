@@ -131,13 +131,12 @@ public class NCCServiceImpl implements NCCService{
                     {
                         predicates.add(criteriaBuilder.and(criteriaBuilder.like(root.get("password"), "%"+pageNCC.getDmncc().getTenDayDu() +"%")));
                     }
-
                     return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
                 }
 
             }, pageable);
-            List<User> listUser = page.getContent();
-            return new Request<Page<User>>(200, Constant.Success, page);
+            //List<DMNCC> dmnccList = page.getContent();
+            return new Request<Page<DMNCC>>(200, Constant.Success, page);
         }catch (Exception e){
             return new Request<String>(400, Constant.BadRequest, Constant.Failed);
         }
@@ -146,5 +145,15 @@ public class NCCServiceImpl implements NCCService{
     @Override
     public DMNCC save(DMNCC dmncc) {
         return nccRepositories.save(dmncc);
+    }
+
+    @Override
+    public List<DMNCC> findAll() {
+        return nccRepositories.findAll(new Specification<DMNCC>() {
+            @Override
+            public Predicate toPredicate(Root<DMNCC> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
+                return null;
+            }
+        });
     }
 }
