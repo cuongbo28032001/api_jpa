@@ -6,6 +6,8 @@ import com.example.codeapi.dto.Request;
 import com.example.codeapi.models.DMNCC;
 import com.example.codeapi.models.User;
 
+import java.util.List;
+
 public interface NCCService {
     DMNCC save(DMNCC dmncc);
 
@@ -14,4 +16,6 @@ public interface NCCService {
     Request update(DMNCC dmncc);
 
     Request findByPagingCriteria(PageNCC pageNCC);
+
+    List<DMNCC> getAll();
 }

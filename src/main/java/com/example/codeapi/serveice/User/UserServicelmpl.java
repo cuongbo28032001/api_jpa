@@ -15,9 +15,8 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.time.LocalDate;
+import java.util.*;
 
 @Service
 public class UserServicelmpl implements UserService{
@@ -27,6 +26,9 @@ public class UserServicelmpl implements UserService{
     @Override
     public Request<?> findByPagingCriteria(PageUser pageUser) {
         Pageable pageable = PageRequest.of(pageUser.getPage().getPageNo(),pageUser.getPage().getPageSize());
+        Date dateFrom = pageUser.getDate().getDatefrom();
+        Date dateTo= pageUser.getDate().getDateto();
+        dateTo.setDate(dateTo.getDate()+1);
         try{
             Page page = userRepositories.findAll(new Specification<User>() {
                 @Override
@@ -41,13 +43,21 @@ public class UserServicelmpl implements UserService{
                     {
                         predicates.add(criteriaBuilder.and(criteriaBuilder.like(root.get("password"), "%"+pageUser.getUser().getPassword() +"%")));
                     }
+                    if(pageUser.getDate().getDatefrom() != null)
+                    {
+                        predicates.add((criteriaBuilder.and(criteriaBuilder.greaterThanOrEqualTo(root.get("datecreate"), dateFrom))));
+                    }
+                    if(pageUser.getDate().getDateto() != null)
+                    {
+                        predicates.add((criteriaBuilder.and( criteriaBuilder.lessThanOrEqualTo(root.get("datecreate"),dateTo))));
+                    }
 
                     return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
                 }
 
             }, pageable);
             List<User> listUser = page.getContent();
-            return new Request<Page<User>>(200, Constant.Success, page);
+            return page.getContent().isEmpty() ? new Request<Page<User>>(200, Constant.Success, null) : new Request<Page<User>>(200, Constant.Success, page);
         }catch (Exception e){
             return new Request<String>(400, Constant.BadRequest, Constant.Failed);
         }
@@ -105,4 +115,5 @@ public class UserServicelmpl implements UserService{
             }
         });
     }
+
 }

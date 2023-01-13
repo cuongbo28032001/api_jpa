@@ -7,8 +7,11 @@ import com.example.codeapi.serveice.DMNCC.NCCService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/DM_NCC")
+@CrossOrigin(origins="http://localhost:4200")
 public class NCCController {
     @Autowired
     private NCCService nccService;
@@ -29,4 +32,9 @@ public class NCCController {
     {
         return  this.nccService.findByPagingCriteria(pageNCC);
     }
+
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    public List<DMNCC> getAll(){
+        return nccService.getAll();
+    };
 }

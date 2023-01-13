@@ -9,6 +9,8 @@ public class PageUser {
 
     PageDto page;
 
+    DateDto date;
+
     public User getUser() {
         return user;
     }
@@ -23,5 +25,13 @@ public class PageUser {
 
     public void setPage(PageDto page) {
         this.page = page;
+    }
+
+    public DateDto getDate() {
+        return date;
+    }
+
+    public void setDate(DateDto date) {
+        this.date = date;
     }
 }
