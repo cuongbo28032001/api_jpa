@@ -136,6 +136,7 @@ public class NCCServiceImpl implements NCCService{
 
             }, pageable);
             //List<DMNCC> dmnccList = page.getContent();
+
             return new Request<Page<DMNCC>>(200, Constant.Success, page);
         }catch (Exception e){
             return new Request<String>(400, Constant.BadRequest, Constant.Failed);

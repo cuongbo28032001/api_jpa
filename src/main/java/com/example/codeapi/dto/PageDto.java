@@ -6,6 +6,12 @@ public class PageDto {
 
     private int pageNo;
 
+    public PageDto(int pageSize, int pageNo) {
+        super();
+        this.pageSize = pageSize;
+        this.pageNo = pageNo;
+    }
+
     public int getPageSize() {
         return pageSize;
     }

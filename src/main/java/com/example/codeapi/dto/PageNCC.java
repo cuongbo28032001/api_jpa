@@ -7,9 +7,12 @@ public class PageNCC {
     DMNCC dmncc;
 
     public PageNCC(PageDto pageDto, DMNCC dmncc) {
+        super();
         this.pageDto = pageDto;
         this.dmncc = dmncc;
     }
+
+
 
     public PageDto getPageDto() {
         return pageDto;
